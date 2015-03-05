@@ -1,20 +1,37 @@
 use Mix.Config
 
+config :phoenix_heroku, PhoenixHeroku.Endpoint,
+  url: [host: "example.com"],
+  http: [port: System.get_env("PORT")],
+  secret_key_base: "OWF9saVIDJCgiP4OqTfC5+MnCS/ZKuDUersuIeDj8pvu1J+V6fO0VpUC9RN76eo0"
+  
 # ## SSL Support
 #
-# To get SSL working, you will need to set:
+# To get SSL working, you will need to add the `https` key
+# to the previous section:
 #
-#     https: [port: 443,
-#             keyfile: System.get_env("SOME_APP_SSL_KEY_PATH"),
-#             certfile: System.get_env("SOME_APP_SSL_CERT_PATH")]
+#  config:phoenix_heroku, PhoenixHeroku.Endpoint,
+#    ...
+#    https: [port: 443,
+#            keyfile: System.get_env("SOME_APP_SSL_KEY_PATH"),
+#            certfile: System.get_env("SOME_APP_SSL_CERT_PATH")]
 #
 # Where those two env variables point to a file on
 # disk for the key and cert.
+  
 
-config :phoenix, PhoenixHeroku.Router,
-  url: [host: "example.com"],
-  http: [port: System.get_env("PORT")],
-  secret_key_base: "3f0JoEl+Ijbte28aV0WzusJg/RxkAiytWTYmXQid38P1FM0/JmgH2OFcevP6ztGTmYPjEt2oGMP8qHkLMwyE7w=="
+# Do not pring debug messages in production
+config :logger, level: :info
 
-config :logger, :console,
-  level: :all
+# ## Using releases
+#
+# If you are doing OTP releases, you need to instruct Phoenix
+# to start the server for all endpoints:
+#
+#     config :phoenix, :serve_endpoints, true
+#
+# Alternatively, you can configure exactly which server to
+# start per endpoint:
+#
+#     config :phoenix_heroku, PhoenixHeroku.Endpoint, server: true
+#

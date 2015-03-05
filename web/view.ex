@@ -6,16 +6,12 @@ defmodule PhoenixHeroku.View do
   using do
     quote do
       # Import common functionality
-      import PhoenixHeroku.I18n
       import PhoenixHeroku.Router.Helpers
 
       # Use Phoenix.HTML to import all HTML functions (forms, tags, etc)
       use Phoenix.HTML
-
-      # Common aliases
-      alias Phoenix.Controller.Flash
-    end 
-  end 
+    end
+  end
 
   # Functions defined here are available to all other views/templates
 end

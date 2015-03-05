@@ -1,23 +1,25 @@
 defmodule PhoenixHeroku.Router do
   use Phoenix.Router
-  
+
   pipeline :browser do
     plug :accepts, ~w(html)
     plug :fetch_session
-  end 
+    plug :fetch_flash
+    plug :protect_from_forgery
+  end
 
   pipeline :api do
     plug :accepts, ~w(json)
-  end 
-  
-  scope "/" do
+  end
+
+  scope "/", PhoenixHeroku do
     pipe_through :browser # Use the default browser stack
 
-    get "/", PhoenixHeroku.PageController, :index, as: :pages
+    get "/", PageController, :index
   end
 
   # Other scopes may use custom stacks.
-  # scope "/api" do
+  # scope "/api", PhoenixHeroku do
   #   pipe_through :api
   # end
 end

@@ -5,20 +5,13 @@
 # is restricted to this project.
 use Mix.Config
 
-# Configures the router
-config :phoenix, PhoenixHeroku.Router,
+# Configures the endpoint
+config :phoenix_heroku, PhoenixHeroku.Endpoint,
   url: [host: "localhost"],
-  http: [port: System.get_env("PORT")],
-  https: false,
-  secret_key_base: "3f0JoEl+Ijbte28aV0WzusJg/RxkAiytWTYmXQid38P1FM0/JmgH2OFcevP6ztGTmYPjEt2oGMP8qHkLMwyE7w==",
-  catch_errors: true,
+  secret_key_base: "OWF9saVIDJCgiP4OqTfC5+MnCS/ZKuDUersuIeDj8pvu1J+V6fO0VpUC9RN76eo0",
   debug_errors: false,
-  error_controller: PhoenixHeroku.PageController
+  pubsub: [adapter: Phoenix.PubSub.PG2]
 
-# Session configuration
-config :phoenix, PhoenixHeroku.Router,
-  session: [store: :cookie,
-            key: "_phoenix_heroku_key"]
 
 # Configures Elixir's Logger
 config :logger, :console,
